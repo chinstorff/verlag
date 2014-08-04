@@ -1,0 +1,5 @@
+enum {
+  HALT,
+  ICONST,
+  PRINT,
+};
