@@ -26,25 +26,35 @@ void verlag_cpu (verlag_state *s) {
     switch (opcode) {
     case ICONST: {
       printf("\t%d", s->code[s->ip]);
-      s->stack[++(s->sp)] = s->code[(s->ip)++];
+      push(s, s->code[(s->ip)++]);
     } break;
     case PRINT: {
-      printf("\n%d", s->stack[(s->sp)--]);
+      printf("\n%d", pop(s));
     } break;
     case IADD: {
-      int b = s->stack[(s->sp)--];
-      int a = s->stack[(s->sp)--];
-      s->stack[++(s->sp)] = a + b;
+      int b = pop(s);
+      int a = pop(s);
+      push(s, a + b);
     } break;
     case ISUB: {
-      int b = s->stack[(s->sp)--];
-      int a = s->stack[(s->sp)--];
-      s->stack[++(s->sp)] = a - b;
+      int b = pop(s);
+      int a = pop(s);
+      push(s, a - b);
     } break;
     case IMUL: {
-      int b = s->stack[(s->sp)--];
-      int a = s->stack[(s->sp)--];
-      s->stack[++(s->sp)] = a * b;    
+      int b = pop(s);
+      int a = pop(s);
+      push(s, a * b);
+    } break;
+    case ILT: {
+      int b = pop(s);
+      int a = pop(s);
+      push(s, a < b);
+    } break;
+    case IEQ: {
+      int b = pop(s);
+      int a = pop(s);
+      push(s, a == b);
     } break;
     case POP: {
       (s->sp)--;
@@ -56,7 +66,13 @@ void verlag_cpu (verlag_state *s) {
     }
 
     printf("\n");
-
-    
   }
+}
+
+void push (verlag_state *s, int value) {
+  s->stack[++(s->sp)] = value;
+}
+
+int pop (verlag_state *s) {
+  return s->stack[(s->sp)--];
 }
