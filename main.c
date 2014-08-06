@@ -13,8 +13,8 @@ int main () {
   verlag_state s;
   verlag_init(&s);
 
-  int code[9] = { ICONST, 2, ICONST, 3, PRINT, ICONST, 4, PRINT, PRINT };
-  copy_array(code, s.code, 9);
+  int code[] = { ICONST, 2, ICONST, 3, IADD, PRINT, ICONST, 4, ICONST, 3, ISUB, PRINT };
+  copy_array(code, s.code, 12);
 
   verlag_cpu(&s);
 }
