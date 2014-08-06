@@ -17,4 +17,6 @@ int main () {
   copy_array(code, s.code, 9);
 
   verlag_cpu(&s);
+
+  return 1;
 }

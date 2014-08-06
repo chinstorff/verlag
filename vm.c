@@ -21,12 +21,15 @@ void verlag_cpu (verlag_state *s) {
   while (s->ip < 100) { // 100 == a->code.length
     opcode = s->code[(s->ip)++];
 
+    printf("%04d: %s", s->ip, opcodes[opcode]);
+
     switch (opcode) {
     case ICONST: {
+      printf("\t%d", s->code[s->ip]);
       s->stack[++(s->sp)] = s->code[(s->ip)++];
     } break;
     case PRINT: {
-      printf("%d", s->stack[(s->sp)--]);
+      printf("\n%d", s->stack[(s->sp)--]);
     } break;
     case IADD: {
       int b = s->stack[(s->sp)--];
@@ -47,8 +50,13 @@ void verlag_cpu (verlag_state *s) {
       (s->sp)--;
     } break;
     case HALT: {
+      printf("\n");
       return;
     } break;
     }
+
+    printf("\n");
+
+    
   }
 }
