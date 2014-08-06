@@ -38,6 +38,14 @@ void verlag_cpu (verlag_state *s) {
       int a = s->stack[(s->sp)--];
       s->stack[++(s->sp)] = a - b;
     } break;
+    case IMUL: {
+      int b = s->stack[(s->sp)--];
+      int a = s->stack[(s->sp)--];
+      s->stack[++(s->sp)] = a * b;    
+    } break;
+    case POP: {
+      (s->sp)--;
+    } break;
     case HALT: {
       return;
     } break;
