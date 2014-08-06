@@ -18,7 +18,7 @@ void verlag_init (verlag_state *s) {
 
 void verlag_cpu (verlag_state *s) {
   while (s->ip < 100) { // 100 == a->code.length
-    int opcode = s->code[s->ip++];
+    int opcode = s->code[(s->ip)++];
 
     switch (opcode) {
     case ICONST: {
