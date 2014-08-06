@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "bytecode.h"
 #include "vm.h"
 
@@ -24,9 +25,12 @@ void verlag_cpu (verlag_state *s) {
     printf("%04d: %s", s->ip, opcodes[opcode]);
 
     switch (opcode) {
-    case ICONST: {
+    case PUSH: {
       printf("\t%d", s->code[s->ip]);
       push(s, s->code[(s->ip)++]);
+    } break;
+    case POP: {
+      pop(s);
     } break;
     case PRINT: {
       printf("\n%d", pop(s));
@@ -56,9 +60,6 @@ void verlag_cpu (verlag_state *s) {
       int a = pop(s);
       push(s, a == b);
     } break;
-    case POP: {
-      (s->sp)--;
-    } break;
     case HALT: {
       printf("\n");
       return;
@@ -70,9 +71,20 @@ void verlag_cpu (verlag_state *s) {
 }
 
 void push (verlag_state *s, int value) {
+  if (s->sp + 1 >= 10) {
+    verlag_vm_err(s, "\nERROR: stack overflow");
+  }
   s->stack[++(s->sp)] = value;
 }
 
 int pop (verlag_state *s) {
+  if (s->sp - 1 < -1) {
+    verlag_vm_err(s, "\nERROR: can't POP an empty stack");
+  }
   return s->stack[(s->sp)--];
+}
+
+void verlag_vm_err (verlag_state *s, char *e) {
+  puts(e);
+  exit(1);
 }

@@ -3,7 +3,8 @@
 
 enum {
   HALT,
-  ICONST,
+  PUSH,
+  POP,
   PRINT, 
   IADD,
   ISUB,
@@ -16,13 +17,13 @@ enum {
   LOAD,    // load from local
   GLOAD,   // load from global
   STORE,   // store in local
-  GSTORE,  // store in global
-  POP
+  GSTORE  // store in global
 };
 
 static char *opcodes[] = {
   "HALT",
-  "ICONST",
+  "PUSH",
+  "POP",
   "PRINT",
   "IADD",
   "ISUB",
@@ -35,8 +36,7 @@ static char *opcodes[] = {
   "LOAD",
   "GLOAD",
   "STORE",
-  "GSTORE",
-  "POP"
+  "GSTORE"
 };
 
 #endif
