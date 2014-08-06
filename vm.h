@@ -3,7 +3,7 @@ typedef struct verlag_state_s {
   int sp; // holds current place in stack
   int fp; // ?
 
-  int code[20];
+  int code[100];
   int stack[10];
 } verlag_state;
 
