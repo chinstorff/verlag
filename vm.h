@@ -8,4 +8,4 @@ typedef struct verlag_state_s {
 } verlag_state;
 
 void verlag_init (verlag_state *);
-void cpu (verlag_state *);
+void verlag_cpu (verlag_state *);
