@@ -8,12 +8,11 @@ void copy_array (int from[], int to[], int length) {
   }
 }
 
-
 int main () {
   verlag_state s;
   verlag_init(&s);
 
-  int code[] = { PUSH, 2, POP, POP, HALT };
+  int code[] = { PUSH, 2, PUSH, 3, POP, POP, HALT };
   copy_array(code, s.code, sizeof code);
 
   verlag_cpu(&s);

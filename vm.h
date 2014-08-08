@@ -8,6 +8,8 @@ typedef struct verlag_state_s {
 
   int code[100];
   int stack[10];
+
+  int running;
 } verlag_state;
 
 void verlag_init (verlag_state *);
