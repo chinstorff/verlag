@@ -14,8 +14,8 @@ typedef struct verlag_state_s {
 
 void verlag_init (verlag_state *);
 void verlag_cpu  (verlag_state *);
-void push (verlag_state *, int);
-int  pop  (verlag_state *);
+void verlag_stack_push (verlag_state *, int);
+int  verlag_stack_pop  (verlag_state *);
 void verlag_vm_err (verlag_state *, char *);
 
 #endif
